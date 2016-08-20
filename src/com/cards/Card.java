@@ -1,9 +1,11 @@
 package com.cards;
 
+
 public class Card {
 
 	public Card() {
 	}
+	
 	public int getNum() {
 		return num;
 	}
