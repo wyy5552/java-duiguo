@@ -1,10 +1,10 @@
-package cardGame;
+package imooc;
 public class card implements Comparable<card> {
     private String color;
 	private String num;
 	/*
-	 * 用两个String属性来表示颜色和数字，但是不方便比较因此添加两个
-	 * Integer来帮助比较大霄
+	 * 用两个String属�?�来表示颜色和数字，但是不方便比较因此添加两�?
+	 * Integer来帮助比较大�?
 	 */
 	Integer color_;           
 	Integer num_;

@@ -1,4 +1,4 @@
-package cardGame;
+package imooc;
 import java.util.ArrayList;
 import java.util.List;
 public class people {
