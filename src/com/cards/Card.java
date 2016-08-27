@@ -6,24 +6,12 @@ public class Card {
 	public Card() {
 	}
 	
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
-	public int getFlower() {
-		return flower;
-	}
-	public void setFlower(int flower) {
-		this.flower = flower;
-	}
 	/**
-	 * ÅÆÊý×Ö
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
-	private int num;
+	public int num;
 	/**
-	 * ÅÆ»¨É«
+	 * ï¿½Æ»ï¿½É«
 	 */
-	private int flower;
+	public CardColor color;
 }

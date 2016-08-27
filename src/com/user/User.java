@@ -1,14 +1,18 @@
 package com.user;
 
+import com.cards.Card;
+
 public class User {
 	/**
-	 * ÓÃ»§Ãû×Ö
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private String name;
 	/**
-	 * ÓÃ»§id
+	 * ï¿½Ã»ï¿½id
 	 */
 	private int id;
+	
+	public Card[] list = new Card[2];
 
 	public String getName() {
 		return name;
