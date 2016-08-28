@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-enum Color
-{
-	heitao,hongtao,meihua,fangkuai;
-}
 public class CardManager {
 	List<Card> cards;
 
@@ -46,7 +42,7 @@ public class CardManager {
 	 */
 	public void shuffle()
 	{
-		System.out.print("洗牌");
+		System.out.println("洗牌");
 		Collections.shuffle(cards);
 		show();
 	}
@@ -66,7 +62,6 @@ public class CardManager {
 	}
 //输出当前的牌
 	private void show() {
-		// TODO Auto-generated method stub
 		for(Card c :cards)
 		{
 			System.out.println("花色:" + c.color.getColor() + " 数字：" + c.num);

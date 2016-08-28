@@ -4,14 +4,16 @@ import com.cards.Card;
 
 public class User {
 	/**
-	 * �û�����
+	 * 姓名
 	 */
 	private String name;
 	/**
-	 * �û�id
+	 * 玩家唯一id
 	 */
 	private int id;
-	
+	/**
+	 * 人手中牌
+	 */
 	public Card[] list = new Card[2];
 
 	public String getName() {
@@ -20,6 +22,14 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }
