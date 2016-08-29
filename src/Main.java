@@ -1,9 +1,12 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.cards.Card;
 import com.cards.CardManager;
+import com.cards.CardNum;
 import com.user.User;
 
 
@@ -44,7 +47,9 @@ public class Main {
 			userList.add(user);
 		}
 		
-		Card[] perFlop;
+		input.close();
+		
+		Card[] perFlop;//发牌数组
 		for(i = 0; i < 2; i++)
 		{//每人发两次牌
 			perFlop = cmgr.perflop(2);
@@ -53,15 +58,19 @@ public class Main {
 				userList.get(j).list[i] = perFlop[j];
 			}
 		}
-		
+		ArrayList<CardNum> cardNums = new ArrayList<CardNum>();
+		//输出玩家手牌
 		for(User u:userList)
 		{
-			
-			System.out.print(u.getName());
-			
+			u.traceCard();
+			cardNums.add(u.getCardNum());
 		}
 		
-		
+		Collections.sort(cardNums,new SortByNum());
+		CardNum num = cardNums.get(0);
+		System.out.println(num.user.getName() + "  失败了，牌面是：红色数量：" + num.redNum + "  牌值：" + num.num);
+		num = cardNums.get(1);
+		System.out.println(num.user.getName() + "  获得了胜利，牌面是：红色数量：" + num.redNum + "  牌值：" + num.num);
 		
 	}
 	
@@ -70,4 +79,12 @@ public class Main {
 	{
 		
 	}
+}
+
+class SortByNum implements Comparator<CardNum> 
+{
+	 public int compare(CardNum u1, CardNum u2)
+	 {
+		 return u1.compareTo(u2);
+	 }
 }

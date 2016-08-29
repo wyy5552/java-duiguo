@@ -62,10 +62,11 @@ public class CardManager {
 	}
 //输出当前的牌
 	private void show() {
-		for(Card c :cards)
-		{
-			System.out.println("花色:" + c.color.getColor() + " 数字：" + c.num);
-		}
+		
+//		for(Card c :cards)
+//		{
+//			System.out.println("花色:" + c.color.getColor() + " 数字：" + c.num);
+//		}
 	}
 	
 }

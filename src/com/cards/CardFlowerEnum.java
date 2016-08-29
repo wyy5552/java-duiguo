@@ -2,23 +2,7 @@ package com.cards;
 
 public class CardFlowerEnum {
 	/**
-	 * ×î´óÅÆ
+	 * æœ€å¤§ç‰Œæ•°
 	 */
 	public static final int MAX = 13;
-	/**
-	 * ºÚÌÒ
-	 */
-	public static final int heitao = 1;
-	/**
-	 * ºìÌÒ
-	 */
-	public static final int hongtao = 2;
-	/**
-	 * Ã·»¨
-	 */
-	public static final int meihua = 3;
-	/**
-	 * ·½¿é
-	 */
-	public static final int fangkuai = 4;
 }

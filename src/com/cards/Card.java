@@ -7,11 +7,11 @@ public class Card {
 	}
 	
 	/**
-	 * ������
+	 * 牌面
 	 */
 	public int num;
 	/**
-	 * �ƻ�ɫ
+	 * 花色
 	 */
 	public CardColor color;
 }
