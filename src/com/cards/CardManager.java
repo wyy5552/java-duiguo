@@ -53,7 +53,7 @@ public class CardManager {
 	 */
 	public Card[] perflop(int value)
 	{
-		Card[] list = new Card[2];
+		Card[] list = new Card[value];
 		for(int i = 0; i < value; i++)
 		{
 			list[i] = cards.remove(0);

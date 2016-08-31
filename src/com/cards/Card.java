@@ -14,4 +14,9 @@ public class Card {
 	 * 花色
 	 */
 	public CardColor color;
+	//例如： 红桃：8
+	public String toString()
+	{
+		return color.getColor() + ":" + num;
+	}
 }

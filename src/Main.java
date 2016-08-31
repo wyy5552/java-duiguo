@@ -7,6 +7,7 @@ import java.util.Scanner;
 import com.cards.Card;
 import com.cards.CardManager;
 import com.cards.CardNum;
+import com.user.PlayMethodDict;
 import com.user.User;
 
 
@@ -21,11 +22,11 @@ public class Main {
 		int i;
 		
 		Scanner input = new Scanner(System.in);
-		
+		//创建userNum个玩家================================
 		ArrayList<User> userList = new ArrayList<User>();
-
+		int userNum = 2;//5个人玩
 		User user;
-		for(i = 0; i < 2; i++)
+		for(i = 0; i < userNum; i++)
 		{
 			user = new User();
 			System.out.println("请输入第" + i + "名玩家的id");
@@ -48,16 +49,30 @@ public class Main {
 		}
 		
 		input.close();
-		
+		//每人发cards_NUM张牌=============================================
 		Card[] perFlop;//发牌数组
-		for(i = 0; i < 2; i++)
+		for(i = 0; i < PlayMethodDict.CARDS_NUM; i++)//每人发num张牌
 		{//每人发两次牌
-			perFlop = cmgr.perflop(2);
+			perFlop = cmgr.perflop(userList.size());//从牌里面取出玩家数量的牌
 			for(int j = 0; j < userList.size(); j++)
 			{//每人获得一张牌
 				userList.get(j).list[i] = perFlop[j];
 			}
 		}
+		
+		//列举每个人手里的牌，让玩家选择搭配，选择后锁死，找到头牌、尾牌===================
+		//输出每位玩家的手牌
+		for(User u:userList)
+		{
+			System.out.println(u.getName() + "手中的牌:  ");
+			for(Card c:u.list)
+			{
+				System.out.print(c.toString() + "  ");
+			}
+			System.out.println(" ");
+		}
+		
+		
 		ArrayList<CardNum> cardNums = new ArrayList<CardNum>();
 		//输出玩家手牌
 		for(User u:userList)

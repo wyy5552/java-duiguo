@@ -16,7 +16,7 @@ public class User {
 	/**
 	 * 人手中牌
 	 */
-	public Card[] list = new Card[2];
+	public Card[] list = new Card[PlayMethodDict.CARDS_NUM];
 
 	public String getName() {
 		return name;
