@@ -1,4 +1,4 @@
-package test;
+package test.enumtest;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
