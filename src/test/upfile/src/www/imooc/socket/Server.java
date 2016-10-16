@@ -17,6 +17,7 @@ public class Server {
             while (true) {
                 socket = serverSocket.accept();
                 ServerThread serverThread = new ServerThread(socket);
+                System.out.println("Ïß³ÌÆô¶¯!");
                 serverThread.start();
             }
         } catch (IOException e) {

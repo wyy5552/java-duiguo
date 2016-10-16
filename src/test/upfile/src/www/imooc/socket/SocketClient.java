@@ -23,7 +23,7 @@ public class SocketClient {
     private ObjectInputStream ois;
 
     /**
-     * 鍏抽棴杩炴帴
+     * 关闭连接
      */
     public void close() {
         try {
@@ -39,7 +39,7 @@ public class SocketClient {
     }
 
     /**
-     * 鍙戦�佹暟鎹�
+     * 发送数据
      * @param transfer
      */
     public void sendData(CommandTransfer transfer) {
@@ -53,7 +53,7 @@ public class SocketClient {
     }
 
     /**
-     * 鎺ユ敹鏁版嵁
+     * 接收数据
      * @return
      */
     public CommandTransfer getData(){
@@ -71,13 +71,13 @@ public class SocketClient {
     }
 
     /**
-     * 鏄剧ず涓昏彍鍗�
+     * 显示主菜单
      */
     public void showMainMenu() {
-        System.out.println("***娆㈣繋浣跨敤鏂囦欢涓婁紶鍣�***");
-        System.out.println("---鐧诲綍璇锋寜1---");
-        System.out.println("---娉ㄥ唽璇锋寜2---");
-        System.out.println("---閫�鍑鸿鎸�3---");
+        System.out.println("***欢迎使用文件上传器***");
+        System.out.println("---登录请按1---");
+        System.out.println("---注册请按2---");
+        System.out.println("---退出请按3---");
         System.out.println("***********************");
 
         int choice;
@@ -86,7 +86,7 @@ public class SocketClient {
                 choice = scanner.nextInt();
                 break;
             } catch (Exception e) {
-                System.out.println("璇疯緭鍏ユ鏁存暟");
+                System.out.println("请输入正整数");
                 scanner.next();
                 continue;
             }
@@ -101,23 +101,23 @@ public class SocketClient {
             case 3:
                 System.exit(0);
             default:
-                System.out.println("杈撳叆閿欒");
+                System.out.println("输入错误");
                 System.exit(1);
         }
     }
 
     /**
-     * 鐢ㄦ埛鐧诲綍鐧诲綍
+     * 用户登录登录
      */
     public void login() {
         User user = new User();
         CommandTransfer transfer = new CommandTransfer();
-        System.out.println("娆㈣繋鐧婚檰, 浣犲彲浠ヨ繘琛屼笁娆＄櫥褰曞皾璇�");
+        System.out.println("欢迎登陆, 你可以进行三次登录尝试");
         int count = 3;
         while (count-- > 0) {
-            System.out.println("璇疯緭鍏ョ敤鎴峰悕:");
+            System.out.println("请输入用户名:");
             user.setName(scanner.next());
-            System.out.println("璇疯緭鍏ュ瘑鐮�:");
+            System.out.println("请输入密码:");
             user.setPassword(scanner.next());
             transfer.setCommand("login");
             transfer.setUserData(user);
@@ -137,25 +137,25 @@ public class SocketClient {
                 close();
             }
         }
-        System.out.println("鐧诲綍澶辫触");
+        System.out.println("登录失败");
     }
 
     /**
-     * 鐢ㄦ埛娉ㄥ唽
+     * 用户注册
      */
     public void register() {
         User user = new User();
         CommandTransfer transfer = new CommandTransfer();
-        System.out.println("娆㈣繋娉ㄥ唽");
+        System.out.println("欢迎注册");
         while (true) {
-            System.out.println("璇疯緭鍏ョ敤鎴峰悕:");
+            System.out.println("请输入用户名:");
             user.setName(scanner.next());
-            System.out.println("璇疯緭鍏ュ瘑鐮�:");
+            System.out.println("请输入密码:");
             user.setPassword(scanner.next());
-            System.out.println("璇峰啀娆¤緭鍏ュ瘑鐮�");
+            System.out.println("请再次输入密码");
             String password = scanner.next();
             if (!password.equals(user.getPassword())) {
-                System.out.println("涓ゆ杈撳叆鐨勫瘑鐮佷笉涓�鏍�,璇烽噸鏂拌緭鍏�");
+                System.out.println("两次输入的密码不一样,请重新输入");
                 continue;
             }
 
@@ -163,7 +163,7 @@ public class SocketClient {
             transfer.setUserData(user);
 
             try {
-                // 灏嗘暟鎹紶缁欐湇鍔″櫒骞舵帴鏀舵湇鍔″櫒鐨勫搷搴�
+                // 将数据传给服务器并接收服务器的响应
                 socket = new Socket("localhost", 1346);
                 sendData(transfer);
                 transfer = getData();
@@ -176,28 +176,28 @@ public class SocketClient {
                 close();
             }
         }
-        System.out.println("娉ㄥ唽鎴愬姛,璇风櫥褰�");
+        System.out.println("注册成功,请登录");
         login();
     }
 
     /**
-     * 鐧诲綍鍚庤彍鍗�,鍙�夋嫨涓婁紶鏂囦欢,鏌ョ湅鏂囦欢鎴栭��鍑�
+     * 登录后菜单,可选择上传文件,查看文件或退出
      */
     public void loginedMenu(CommandTransfer transfer) {
         User user = (User) transfer.getUserData();
         String userName = user.getName();
-        System.out.println("---娆㈣繋" + userName + "---");
-        System.out.println("***鏌ヨ鏂囦欢璇锋寜1***");
-        System.out.println("***涓婁紶鏂囦欢璇锋寜2***");
-        System.out.println("***閫�鍑虹櫥褰曡鎸�3***");
+        System.out.println("---欢迎" + userName + "---");
+        System.out.println("***查询文件请按1***");
+        System.out.println("***上传文件请按2***");
+        System.out.println("***退出登录请按3***");
 
         int choice;
         while (true) {
-            System.out.println("璇烽�夋嫨:");
+            System.out.println("请选择:");
             try {
                 choice = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("璇疯緭鍏ヤ互涓婃鏁存暟");
+                System.out.println("请输入以上正整数");
                 scanner.next();
                 continue;
             }
@@ -212,14 +212,14 @@ public class SocketClient {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("杈撳叆鏈夎,璇烽噸鏂拌緭鍏�");
+                    System.out.println("输入有误,请重新输入");
             }
         }
 
     }
 
     /**
-     * 鐧诲綍鍚庣敤鎴锋煡璇㈡枃浠舵煡璇㈡枃浠�
+     * 登录后用户查询文件查询文件
      * @param transfer
      */
     public void queryFile(CommandTransfer transfer) {
@@ -235,7 +235,7 @@ public class SocketClient {
                     System.out.println(file.getId() + ", " + file.getName());
                 }
             } else {
-                System.out.println("鎮ㄨ繕娌℃湁涓婁紶鏂囦欢");
+                System.out.println("您还没有上传文件");
             }
 
         } catch (IOException e) {
@@ -247,10 +247,10 @@ public class SocketClient {
 
 
     /**
-     * 鐧婚檰鍚庣敤鎴蜂笂浼犳枃浠�
+     * 登陆后用户上传文件
      */
     public void uploadFile(CommandTransfer transfer) {
-        System.out.println("璇疯緭鍏ユ枃浠剁殑缁濆璺緞");
+        System.out.println("请输入文件的绝对路径");
         String path;
         path = scanner.next();
         String filename = path.substring(path.lastIndexOf('/') + 1);
@@ -260,7 +260,7 @@ public class SocketClient {
         BufferedInputStream bufferedInputStream = null;
 
         try {
-            // 璇诲彇鏂囦欢
+            // 读取文件
             fileInputStream = new FileInputStream(path);
             byte[] fileContent = new byte[fileInputStream.available()];
             bufferedInputStream = new BufferedInputStream(fileInputStream);
@@ -285,7 +285,7 @@ public class SocketClient {
         transfer.setFileData(file);
 
         try {
-            // 灏嗘暟鎹紶閫掔粰鏈嶅姟鍣�
+            // 将数据传递给服务器
             socket = new Socket("localhost", 1346);
             sendData(transfer);
             transfer = getData();
